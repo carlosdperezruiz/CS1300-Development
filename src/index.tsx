@@ -3,10 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reduxReducer from './redux/reducer';
+import { loadState, saveState } from './redux/sessionStorage';
+import throttle from 'lodash.throttle';
+
+const persistedState = loadState();
+const store = createStore(reduxReducer, persistedState);
+
+store.subscribe(throttle(() => {
+  saveState(store.getState());
+}, 1000));
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
