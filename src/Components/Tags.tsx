@@ -1,5 +1,5 @@
-import { Tag } from 'antd';
 import React from 'react';
+import { Tag } from 'antd';
 import { connect } from 'react-redux';
 import { changeActiveTagsAction } from '../redux/actions';
 import reduxState from '../redux/types';
@@ -25,12 +25,12 @@ class Tags extends React.Component<TagsProps> {
     }
     else {
         const nextSelectedTags = checked ? [...activeTags, tag] : activeTags.filter(t => t !== tag);
-        const nextSelectedTagsFilted = nextSelectedTags.filter(t => t !== 'All')
-        if(nextSelectedTagsFilted.length === 0) {
+        const nextSelectedTagsFiltered = nextSelectedTags.filter(t => t !== 'All')
+        if(nextSelectedTagsFiltered.length === 0) {
             this.props.changeActiveTagsAction(['All'])
         }
         else {
-            this.props.changeActiveTagsAction(nextSelectedTagsFilted)
+            this.props.changeActiveTagsAction(nextSelectedTagsFiltered)
         }
     }
   }

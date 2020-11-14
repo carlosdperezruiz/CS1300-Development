@@ -1,4 +1,4 @@
-import { actions, actionIdentifier, changePagePath, changeActiveTags } from './actions'
+import { actions, actionIdentifier, changePagePath, changeActiveTags, changeSortBy } from './actions'
 import { reduxState } from './types';
 
 // Initial state of the app:
@@ -6,6 +6,7 @@ let SampleData_LoadedProgrammatically = (): reduxState => {
     return {
         pagePath: "/",
         activeTags: ['All'],
+        sort: "title"
     }
 }
 
@@ -27,14 +28,21 @@ function reduxReducer(state: reduxState | undefined, action: actions): reduxStat
             return newState;
         }
         case actionIdentifier.changeActiveTags: {
-            let changePageAction = action as changeActiveTags;
+            let changeActiveTagsAction = action as changeActiveTags;
 
             let newState: reduxState = { ...state }; // this will copy the current state
-            newState.activeTags = changePageAction.activeTags
+            newState.activeTags = changeActiveTagsAction.activeTags
 
             return newState;
         }
-        
+        case actionIdentifier.changeSortBy: {
+            let changeSortAction = action as changeSortBy;
+
+            let newState: reduxState = { ...state }; // this will copy the current state
+            newState.sort = changeSortAction.sort
+
+            return newState;
+        }
         default:
             return state;
     }
