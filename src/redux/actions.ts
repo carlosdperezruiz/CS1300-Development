@@ -2,6 +2,7 @@ export enum actionIdentifier {
     changePagePath, 
     changeActiveTags,
     changeSortBy,
+    changeFavoriteList,
 }
 
 export interface changePagePath {
@@ -17,6 +18,11 @@ export interface changeActiveTags {
 export interface changeSortBy {
     type: actionIdentifier;  
     sort: string;
+}
+
+export interface changeFavoriteList {
+    type: actionIdentifier;  
+    element: string;
 }
 
 export function changePagePathAction(pPagePath:string): changePagePath {
@@ -40,4 +46,11 @@ export function changeSortByAction(pSort:string): changeSortBy {
     };
 };
 
-export type actions = changePagePath | changeActiveTags | changeSortBy
+export function changeFavoriteListAction(pElement:string): changeFavoriteList {
+    return {
+        type: actionIdentifier.changeFavoriteList,
+        element: pElement
+    };
+};
+
+export type actions = changePagePath | changeActiveTags | changeSortBy | changeFavoriteList

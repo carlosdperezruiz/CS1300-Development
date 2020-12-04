@@ -9,7 +9,9 @@ module.exports = {
           lessOptions: {
             modifyVars: {              
             '@primary-color': '#2D5362',
-            '@layout-header-background': '#5899E2',  },
+            '@layout-header-background': '#5899E2',  
+            '@layout-sider-background': '#fff',
+            },
             javascriptEnabled: true,
           },
         },

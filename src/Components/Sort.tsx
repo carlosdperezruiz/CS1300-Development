@@ -23,6 +23,7 @@ class Sort extends React.Component<SortProps> {
     render() {
         return(
             <Dropdown overlay={this.menu} trigger={['click']}>
+                {/* eslint-disable-next-line  */}
                 <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
                 Sort <DownOutlined />
                 </a>
@@ -33,14 +34,9 @@ class Sort extends React.Component<SortProps> {
     menu () {
         return(
             <Menu defaultSelectedKeys={['0']} onClick={e => this.handleClick(e)}>
-                <Menu.Item key="title">
-                Name
-                </Menu.Item>
-                <Menu.Item key="description">
-                Description
-                </Menu.Item>
-                <Menu.Divider />
-                <Menu.Item key="3">3rd menu item</Menu.Item>
+                <Menu.Item key="name">Name</Menu.Item>
+                <Menu.Item key="title">Title</Menu.Item>
+                <Menu.Item key="distance">Distance</Menu.Item>
             </Menu>
         );
     }

@@ -1,3 +1,13 @@
+# Project Details
+## Organization of components
+The Components I'm using are as follows:
+* Doctor Card
+* Favorites Side Bar
+* Sort Dropdown
+* Tags Table
+## How data is passed down through components & How user interactions can trigger changes in the state of components
+The backbone I am using to pass data is [Redux](https://redux.js.org/) https://redux.js.org/ - essentially a state that is accessible by any component, where components can update the state or subscribe to changes of a variable in the state. This approach lets me pass data both downstream and upstream through components. So for example, each card has a button to add the card to the aggregated list. If the button is pressed, the page needs to react to it and rerender the cards on the screen, meaning this action needs to travel upstream. Instead of using a hack-y solution like passing a reference to a function through props, each card is connect to redux such that, when the button is pressed, the card will call an action in the redux state to update the aggregated list that's saved in the redux state. Since this list changes, the page will rerender, now using the updated aggregated list. This also applies to: changing the page, filtering tags, and sorting.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

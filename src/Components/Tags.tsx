@@ -6,7 +6,7 @@ import reduxState from '../redux/types';
 
 const { CheckableTag } = Tag;
 
-const tagsData = ['All', '1', '2', '3'];
+const tagsData = ['All', 'In Network', 'Out of Network', 'Primary Care', 'Specialist'];
 
 interface TagsProps {
     activeTags: string[]
@@ -38,7 +38,7 @@ class Tags extends React.Component<TagsProps> {
   render() {
     return (
       <>
-        <span style={{ marginRight: 8 }}>Categories:</span>
+        <span style={{ marginRight: 8 }}>Filter:</span>
         {tagsData.map(tag => (
           <CheckableTag
             key={tag}

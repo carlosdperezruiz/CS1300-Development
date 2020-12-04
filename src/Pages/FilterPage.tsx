@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Layout, Typography, Button } from 'antd';
+import { Row, Col, Layout, Typography } from 'antd';
 import { Tags } from '../Components/Tags'
 import { Sort } from '../Components/Sort'
 import  { cards } from '../Components/CardData'
@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { reduxState } from '../redux/types';
 import { RouteComponentProps } from 'react-router-dom';
 import { changePagePathAction } from '../redux/actions';
+import { Favorites } from '../Components/Favorites';
 
 const { Title } = Typography;
 const { Content, Header } = Layout;
@@ -18,9 +19,6 @@ interface FilterPageProps extends RouteComponentProps {
 }
 
 class FilterPage extends React.Component<FilterPageProps> {
-    constructor(props:FilterPageProps) {
-        super(props)
-    }
     render() {
         let renderCards: JSX.Element[] = []
         this.sortCards(cards)
@@ -29,9 +27,10 @@ class FilterPage extends React.Component<FilterPageProps> {
         return(
             <Layout style={{ minHeight: '100vh', marginLeft:"1em", marginRight:"1em" }}> 
                 <Header className="site-layout-background" style={{ padding: 0, paddingTop: 20, backgroundColor:"white"}}>
-                    <Title> Projects </Title>   
+                    <Title>Doctors</Title>   
                 </Header>
                 <Header className="site-layout-background" style={{ padding: 0, backgroundColor:"white"}}>
+                    {/* <Button shape="round" style={{margin:"1em"}} onClick={() => this.goToNewPage("/")}> Home </Button> */}
                     <Tags/>   
                     <Sort/>    
                 </Header>
@@ -39,12 +38,12 @@ class FilterPage extends React.Component<FilterPageProps> {
                 <Content style={{ margin: '0 0px', backgroundColor:"white" }}>
                     {/* <Title> Projects </Title>   */}
                     <div className="site-layout" style={{ padding: 12, minHeight: 360 }}>
-                        <div className="FilterPage" /*style={{marginLeft:"10em", marginRight:"10em"}}*/>  
-                            <Button shape="round" style={{margin:"1em"}} onClick={() => this.goToNewPage("/")}> Home </Button>                              
+                        <div className="FilterPage" /*style={{marginLeft:"10em", marginRight:"10em"}}*/>                                
                             {renderArray.map(item => (item))}
                         </div>
                     </div>
                 </Content>
+                <Favorites/>
                 </Layout>
             </Layout>
         )
@@ -52,14 +51,17 @@ class FilterPage extends React.Component<FilterPageProps> {
     sortCards(array:any[]) {
         const { sort } = this.props;
         switch(sort) {
+            case "name":
+                cards.sort((a, b) => (a.props.name > b.props.name) ? 1 : -1)
+                break
             case "title":
                 cards.sort((a, b) => (a.props.title > b.props.title) ? 1 : -1)
                 break
-            case "description":
-                cards.sort((a, b) => (a.props.description > b.props.description) ? 1 : -1)
+            case "distance":
+                cards.sort((a, b) => (a.props.distance > b.props.distance) ? 1 : -1)
                 break
             default:
-                cards.sort((a, b) => (a.props.title > b.props.title) ? 1 : -1)
+                cards.sort((a, b) => (a.props.name > b.props.name) ? 1 : -1)
                 break
         }
         
